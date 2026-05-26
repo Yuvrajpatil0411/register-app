@@ -1,30 +1,30 @@
 pipeline {
     agent { label 'Jenkins-Agent' }
     tools {
-        jdk 'java21'
-        maven '3'
+        jdk 'Java21'
+        maven 'Maven3'
     }
     stages {
-        stage("Cleanup Workspace"){
+        stage("Cleanup Workspace") {
             steps {
             cleanWs()
             }
         }
       
-        stage("Checkout from SCM"){
+        stage("Checkout from SCM") {
             steps {
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/Yuvrajpatil0411/register-app.git'
             }
         }
       
-        stage("Build Application"){
+        stage("Build Application") {
             steps {
-                sh "mvn clean package"
+                sh 'mvn clean package'
             }
         }
-        stage("Test Application"){
+        stage("Test Application") {
             steps {
-                sh "mvn test"
+                sh 'mvn test'
             }
         }
     }
